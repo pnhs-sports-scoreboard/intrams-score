@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IntramsScore | Official Scoreboard</title>
+<title>IntramsScore - Sports Scoring System</title>
 
 <style>
 * {
@@ -15,28 +15,27 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: #f3f5f9;
+  background: #f2f4f8;
   color: #17243b;
 }
 
 header {
-  background: linear-gradient(135deg, #071a35, #142f55);
+  background: linear-gradient(135deg, #07172e, #17375f);
   color: white;
-  padding: 30px 18px;
   text-align: center;
+  padding: 32px 15px;
   border-bottom: 5px solid #d6ad52;
 }
 
 header h1 {
-  color: #e7c46e;
   font-size: 32px;
-  letter-spacing: 2px;
+  color: #e5c16b;
+  letter-spacing: 3px;
 }
 
 header p {
-  margin-top: 8px;
-  color: #e1e6ef;
-  font-size: 13px;
+  margin-top: 9px;
+  font-size: 12px;
   letter-spacing: 2px;
 }
 
@@ -46,39 +45,33 @@ header p {
   padding: 0 15px;
 }
 
-.card {
+.section {
   background: white;
-  border-radius: 14px;
+  border-radius: 13px;
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   box-shadow: 0 4px 15px rgba(0,0,0,.06);
 }
 
 h2 {
   color: #10294b;
-  margin-bottom: 15px;
-  font-size: 20px;
+  margin-bottom: 17px;
+  font-size: 21px;
 }
 
-h3 {
-  color: #10294b;
-  font-size: 16px;
-}
-
-input, select {
+input {
   width: 100%;
   padding: 12px;
-  border: 1px solid #d8dee8;
-  border-radius: 8px;
   margin: 7px 0;
+  border: 1px solid #d5dce7;
+  border-radius: 7px;
   font-size: 14px;
-  background: white;
 }
 
 button {
   border: none;
-  border-radius: 8px;
-  padding: 11px 15px;
+  padding: 10px 14px;
+  border-radius: 7px;
   cursor: pointer;
   font-weight: bold;
   margin: 4px 2px;
@@ -94,117 +87,150 @@ button {
   color: white;
 }
 
-.danger {
-  background: #f4dddd;
-  color: #a12b2b;
+.red {
+  background: #f6dddd;
+  color: #a12626;
+}
+
+.gray {
+  background: #e9edf3;
+  color: #27384f;
 }
 
 button:hover {
-  opacity: .88;
+  opacity: .85;
 }
 
-.team-list, .event-list {
+.team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 18px;
 }
 
-.team-item, .event-item {
-  border: 1px solid #e3e7ee;
-  border-radius: 10px;
-  padding: 14px;
+.team-card {
+  background: white;
+  border: 1px solid #e1e5eb;
+  border-top: 5px solid #d6ad52;
+  border-radius: 12px;
+  padding: 17px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.05);
 }
 
-.event-item {
-  border-left: 4px solid #d6ad52;
-}
-
-.event-heading {
+.team-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
-.event-heading h3 {
-  flex: 1;
+.team-header h3 {
+  color: #10294b;
+  font-size: 19px;
 }
 
-.event-actions {
-  display: flex;
-  gap: 4px;
+.total-box {
+  background: #10294b;
+  color: #e5c16b;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 12px;
 }
 
-.small-btn {
-  padding: 8px 10px;
-  font-size: 12px;
+.total-box strong {
+  font-size: 24px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 450px;
-}
-
-th, td {
-  padding: 13px 10px;
-  text-align: center;
-  border-bottom: 1px solid #e5e8ef;
+  font-size: 13px;
 }
 
 th {
   background: #10294b;
-  color: #e7c46e;
+  color: #e5c16b;
+  padding: 11px 7px;
 }
 
-tr:nth-child(even) {
-  background: #f8f9fc;
+td {
+  padding: 10px 7px;
+  border-bottom: 1px solid #e4e8ef;
 }
 
-.table-wrap {
+td:last-child, th:last-child {
+  text-align: center;
+}
+
+.team-table tr:last-child {
+  font-weight: bold;
+  background: #f3f5f9;
+}
+
+.score-input {
+  width: 65px;
+  padding: 7px;
+  margin: 0;
+  text-align: center;
+}
+
+.leaderboard-wrap {
   overflow-x: auto;
 }
 
-.rank {
-  font-weight: bold;
-  color: #b58a30;
+.leaderboard {
+  min-width: 400px;
 }
 
-.score {
-  font-weight: bold;
-  color: #10294b;
-}
-
-.empty {
-  color: #7a8493;
-  padding: 15px 0;
+.leaderboard th,
+.leaderboard td {
   text-align: center;
+}
+
+.event-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.event-item {
+  border: 1px solid #e1e5eb;
+  border-radius: 9px;
+  padding: 12px;
+}
+
+.event-item strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.small {
+  font-size: 12px;
+  padding: 7px 10px;
 }
 
 footer {
-  background: #071a35;
+  background: #07172e;
   color: #d6ad52;
   text-align: center;
   padding: 20px;
-  margin-top: 35px;
+  margin-top: 30px;
   font-size: 12px;
 }
 
-.label {
-  font-size: 12px;
-  color: #697589;
-  margin-top: 8px;
-  display: block;
+.empty {
+  color: #788395;
+  padding: 12px 0;
+  text-align: center;
 }
 
-@media(max-width:600px) {
+@media(max-width:500px) {
   header h1 {
     font-size: 25px;
   }
 
-  .card {
+  .section {
     padding: 15px;
   }
 }
@@ -220,57 +246,59 @@ footer {
 
 <div class="container">
 
-  <section class="card">
-    <h2>🏆 Overall Leaderboard</h2>
-    <div class="table-wrap">
-      <table>
+  <section class="section">
+    <h2>🏆 Overall Team Rankings</h2>
+    <div class="leaderboard-wrap">
+      <table class="leaderboard">
         <thead>
           <tr>
             <th>Rank</th>
             <th>Team</th>
             <th>Total Points</th>
-            <th>Events Won</th>
           </tr>
         </thead>
-        <tbody id="leaderboard"></tbody>
+        <tbody id="ranking"></tbody>
       </table>
     </div>
   </section>
 
-  <section class="card">
-    <h2>Team Management</h2>
-    <div>
-      <input id="teamName" placeholder="Enter new team name">
-      <button class="gold" onclick="addTeam()">+ Add Team</button>
-    </div>
-    <div class="team-list" id="teamList"></div>
+  <section class="section">
+    <h2>Manage Teams</h2>
+    <input id="newTeam" placeholder="Enter team name">
+    <button class="gold" onclick="addTeam()">+ Add Team</button>
   </section>
 
-  <section class="card">
-    <h2>Sports and Events</h2>
-    <input id="eventName" placeholder="Enter sport or event name">
-    <button class="gold" onclick="addEvent()">+ Add Event</button>
-    <div class="event-list" id="eventList"></div>
+  <section class="section">
+    <h2>Manage Sports and Events</h2>
+    <input id="newSport" placeholder="Enter sport or event name">
+    <button class="gold" onclick="addSport()">+ Add Sport</button>
+    <div class="event-list" id="eventList" style="margin-top:15px"></div>
   </section>
 
-  <section class="card">
-    <h2>Scoring System</h2>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Placement</th>
-            <th>Points</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>1st Place</td><td>100</td></tr>
-          <tr><td>2nd Place</td><td>75</td></tr>
-          <tr><td>3rd Place</td><td>50</td></tr>
-          <tr><td>4th Place</td><td>25</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <section class="section">
+    <h2>Team Score Tables</h2>
+    <p style="color:#718096;font-size:13px;margin-bottom:15px">
+      Each team has its own table. Enter the score for every sport.
+    </p>
+    <div class="team-grid" id="teamTables"></div>
+  </section>
+
+  <section class="section">
+    <h2>Scoring Guide</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Placement</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1st Place</td><td>100</td></tr>
+        <tr><td>2nd Place</td><td>75</td></tr>
+        <tr><td>3rd Place</td><td>50</td></tr>
+        <tr><td>4th Place</td><td>25</td></tr>
+      </tbody>
+    </table>
   </section>
 
 </div>
@@ -280,7 +308,7 @@ footer {
 </footer>
 
 <script>
-const STORAGE_KEY = "intramsScoreData";
+const STORAGE_KEY = "intramsScoreTables";
 
 let teams = [
   {id:1, name:"Team 1"},
@@ -289,48 +317,66 @@ let teams = [
   {id:4, name:"Team 4"}
 ];
 
-let events = [
-  {id:1, name:"Basketball Girls", places:{}},
-  {id:2, name:"Basketball Boys", places:{}},
-  {id:3, name:"Volleyball Boys", places:{}},
-  {id:4, name:"Volleyball Girls", places:{}}
+let sports = [
+  {id:1, name:"Basketball Boys"},
+  {id:2, name:"Basketball Girls"},
+  {id:3, name:"Volleyball Boys"},
+  {id:4, name:"Volleyball Girls"}
 ];
 
+let scores = {};
 let nextTeam = 5;
-let nextEvent = 5;
+let nextSport = 5;
 
-const points = {
-  "1":100,
-  "2":75,
-  "3":50,
-  "4":25
-};
-
-function save() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
-    teams,
-    events,
-    nextTeam,
-    nextEvent
-  }));
-}
-
-function load() {
+function loadData() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+
     if (saved) {
-      if (saved.teams) teams = saved.teams;
-      if (saved.events) events = saved.events;
+      teams = saved.teams || teams;
+      sports = saved.sports || sports;
+      scores = saved.scores || {};
       nextTeam = saved.nextTeam || 5;
-      nextEvent = saved.nextEvent || 5;
+      nextSport = saved.nextSport || 5;
     }
-  } catch(error) {
-    console.log("Could not load saved data.");
+  } catch(e) {
+    console.log("Unable to load saved data.");
   }
 }
 
+function saveData() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    teams,
+    sports,
+    scores,
+    nextTeam,
+    nextSport
+  }));
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[c]);
+}
+
+function getScore(teamId, sportId) {
+  const value = scores[teamId]?.[sportId];
+  return value === undefined ? 0 : Number(value);
+}
+
+function getTotal(teamId) {
+  return sports.reduce((sum, sport) => {
+    return sum + getScore(teamId, sport.id);
+  }, 0);
+}
+
 function addTeam() {
-  const input = document.getElementById("teamName");
+  const input = document.getElementById("newTeam");
   const name = input.value.trim();
 
   if (!name) {
@@ -340,7 +386,8 @@ function addTeam() {
 
   teams.push({id:nextTeam++, name});
   input.value = "";
-  save();
+
+  saveData();
   render();
 }
 
@@ -348,154 +395,143 @@ function editTeam(id) {
   const team = teams.find(t => t.id === id);
   if (!team) return;
 
-  const name = prompt("Enter the new team name:", team.name);
+  const name = prompt("Enter new team name:", team.name);
 
   if (name && name.trim()) {
     team.name = name.trim();
-    save();
+    saveData();
     render();
   }
 }
 
 function deleteTeam(id) {
-  const team = teams.find(t => t.id === id);
-  if (!team) return;
-
-  if (!confirm("Delete " + team.name + "? Its recorded scores will also be removed.")) return;
+  if (!confirm("Delete this team and its scores?")) return;
 
   teams = teams.filter(t => t.id !== id);
+  delete scores[id];
 
-  events.forEach(event => {
-    delete event.places[id];
-  });
-
-  save();
+  saveData();
   render();
 }
 
-function addEvent() {
-  const input = document.getElementById("eventName");
+function addSport() {
+  const input = document.getElementById("newSport");
   const name = input.value.trim();
 
   if (!name) {
-    alert("Please enter an event name.");
+    alert("Please enter a sport name.");
     return;
   }
 
-  events.push({
-    id:nextEvent++,
-    name,
-    places:{}
-  });
-
+  sports.push({id:nextSport++, name});
   input.value = "";
-  save();
+
+  saveData();
   render();
 }
 
-function editEvent(id) {
-  const event = events.find(e => e.id === id);
-  if (!event) return;
+function editSport(id) {
+  const sport = sports.find(s => s.id === id);
+  if (!sport) return;
 
-  const name = prompt("Edit sport or event name:", event.name);
+  const name = prompt("Edit sport name:", sport.name);
 
   if (name && name.trim()) {
-    event.name = name.trim();
-    save();
+    sport.name = name.trim();
+    saveData();
     render();
   }
 }
 
-function deleteEvent(id) {
-  if (!confirm("Delete this event and its scores?")) return;
+function deleteSport(id) {
+  if (!confirm("Delete this sport and its scores from all teams?")) return;
 
-  events = events.filter(e => e.id !== id);
-  save();
+  sports = sports.filter(s => s.id !== id);
+
+  Object.keys(scores).forEach(teamId => {
+    delete scores[teamId][id];
+  });
+
+  saveData();
   render();
 }
 
-function updatePlace(eventId, teamId, placement) {
-  const event = events.find(e => e.id === eventId);
-  if (!event) return;
-
-  if (placement === "") {
-    delete event.places[teamId];
-  } else {
-    const alreadyUsed = Object.entries(event.places)
-      .some(([id, place]) =>
-        id !== String(teamId) && place === placement
-      );
-
-    if (alreadyUsed) {
-      alert("This placement is already assigned to another team.");
-      render();
-      return;
-    }
-
-    event.places[teamId] = placement;
-  }
-
-  save();
-  render();
-}
-
-function getScores() {
-  return teams.map(team => {
-    let total = 0;
-    let wins = 0;
-
-    events.forEach(event => {
-      const placement = event.places[team.id];
-
-      if (placement) {
-        total += points[placement] || 0;
-        if (placement === "1") wins++;
-      }
-    });
-
-    return {
-      ...team,
-      total,
-      wins
-    };
-  }).sort((a,b) =>
-    b.total - a.total || b.wins - a.wins
-  );
-}
-
-function renderLeaderboard() {
-  const tbody = document.getElementById("leaderboard");
-  const scores = getScores();
-
-  if (!scores.length) {
-    tbody.innerHTML = '<tr><td colspan="4">No teams added yet.</td></tr>';
+function updateScore(teamId, sportId, value) {
+  if (value === "" || !Number.isFinite(Number(value)) || Number(value) < 0) {
+    alert("Please enter a valid score of 0 or higher.");
+    render();
     return;
   }
 
-  tbody.innerHTML = scores.map((team,index) => `
-    <tr>
-      <td class="rank">${index + 1}</td>
-      <td>${escapeHTML(team.name)}</td>
-      <td class="score">${team.total}</td>
-      <td>${team.wins}</td>
-    </tr>
-  `).join("");
+  if (!scores[teamId]) {
+    scores[teamId] = {};
+  }
+
+  scores[teamId][sportId] = Number(value);
+
+  saveData();
+  render();
 }
 
 function renderTeams() {
-  const container = document.getElementById("teamList");
+  const container = document.getElementById("teamTables");
 
   if (!teams.length) {
-    container.innerHTML = '<p class="empty">No teams added.</p>';
+    container.innerHTML = '<p class="empty">No teams added yet.</p>';
     return;
   }
 
   container.innerHTML = teams.map(team => `
-    <div class="team-item">
-      <strong>${escapeHTML(team.name)}</strong>
-      <div>
-        <button class="gold small-btn" onclick="editTeam(${team.id})">Edit</button>
-        <button class="danger small-btn" onclick="deleteTeam(${team.id})">Delete</button>
+    <div class="team-card">
+      <div class="team-header">
+        <h3>${escapeHTML(team.name)}</h3>
+      </div>
+
+      <div style="margin-bottom:10px">
+        <button class="gold small" onclick="editTeam(${team.id})">Edit Team</button>
+        <button class="red small" onclick="deleteTeam(${team.id})">Delete</button>
+      </div>
+
+      <table class="team-table">
+        <thead>
+          <tr>
+            <th>Sports</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${
+            sports.length
+            ? sports.map(sport => `
+              <tr>
+                <td>${escapeHTML(sport.name)}</td>
+                <td>
+                  <input
+                    class="score-input"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value="${getScore(team.id, sport.id)}"
+                    aria-label="Score for ${escapeHTML(sport.name)}"
+                    onchange="updateScore(${team.id}, ${sport.id}, this.value)"
+                  >
+                </td>
+              </tr>
+            `).join("")
+            : '<tr><td colspan="2">No sports added.</td></tr>'
+          }
+
+          <tr>
+            <td>TOTAL</td>
+            <td>${getTotal(team.id)}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="total-box">
+        <div style="font-size:12px;letter-spacing:1px">TOTAL POINTS</div>
+        <strong>${getTotal(team.id)}</strong>
       </div>
     </div>
   `).join("");
@@ -504,56 +540,49 @@ function renderTeams() {
 function renderEvents() {
   const container = document.getElementById("eventList");
 
-  if (!events.length) {
-    container.innerHTML = '<p class="empty">No sports or events added yet.</p>';
+  if (!sports.length) {
+    container.innerHTML = '<p class="empty">No sports added yet.</p>';
     return;
   }
 
-  container.innerHTML = events.map(event => `
+  container.innerHTML = sports.map(sport => `
     <div class="event-item">
-      <div class="event-heading">
-        <h3>${escapeHTML(event.name)}</h3>
-        <div class="event-actions">
-          <button class="gold small-btn" onclick="editEvent(${event.id})">Edit</button>
-          <button class="danger small-btn" onclick="deleteEvent(${event.id})">Delete</button>
-        </div>
-      </div>
-
-      ${
-        teams.length
-        ? teams.map(team => `
-          <label class="label">${escapeHTML(team.name)}</label>
-          <select onchange="updatePlace(${event.id}, ${team.id}, this.value)">
-            <option value="" ${!event.places[team.id] ? "selected" : ""}>No placement</option>
-            <option value="1" ${event.places[team.id] === "1" ? "selected" : ""}>1st Place - 100 points</option>
-            <option value="2" ${event.places[team.id] === "2" ? "selected" : ""}>2nd Place - 75 points</option>
-            <option value="3" ${event.places[team.id] === "3" ? "selected" : ""}>3rd Place - 50 points</option>
-            <option value="4" ${event.places[team.id] === "4" ? "selected" : ""}>4th Place - 25 points</option>
-          </select>
-        `).join("")
-        : '<p class="empty">Add teams to enter scores.</p>'
-      }
+      <strong>${escapeHTML(sport.name)}</strong>
+      <button class="gold small" onclick="editSport(${sport.id})">Edit</button>
+      <button class="red small" onclick="deleteSport(${sport.id})">Delete</button>
     </div>
   `).join("");
 }
 
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  })[char]);
+function renderRanking() {
+  const tbody = document.getElementById("ranking");
+
+  const sorted = teams.map(team => ({
+    ...team,
+    total:getTotal(team.id)
+  })).sort((a,b) => b.total - a.total);
+
+  if (!sorted.length) {
+    tbody.innerHTML = '<tr><td colspan="3">No teams available.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = sorted.map((team,index) => `
+    <tr>
+      <td><strong>${index + 1}</strong></td>
+      <td>${escapeHTML(team.name)}</td>
+      <td><strong>${team.total}</strong></td>
+    </tr>
+  `).join("");
 }
 
 function render() {
-  renderLeaderboard();
   renderTeams();
   renderEvents();
+  renderRanking();
 }
 
-load();
+loadData();
 render();
 </script>
 
