@@ -4,441 +4,558 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IntramsScore | Official Scoring System</title>
+<title>IntramsScore | Official Scoreboard</title>
+
 <style>
-:root {
-  --navy:#101d38;
-  --navy2:#192c50;
-  --gold:#d6b15d;
-  --light:#f5f6fa;
-  --white:#fff;
-  --muted:#8792a5;
-  --border:#e5e8ef;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-*{box-sizing:border-box}
-body{
- margin:0;background:var(--light);color:#202b40;
- font-family:Arial,sans-serif;
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f5f9;
+  color: #17243b;
 }
-header{
- background:linear-gradient(130deg,#0d1931,#20385f);
- color:white;padding:25px 6%;
- border-bottom:4px solid var(--gold);
+
+header {
+  background: linear-gradient(135deg, #071a35, #142f55);
+  color: white;
+  padding: 30px 18px;
+  text-align: center;
+  border-bottom: 5px solid #d6ad52;
 }
-.brand{display:flex;align-items:center;gap:14px}
-.logo{
- width:49px;height:49px;border:2px solid var(--gold);
- color:var(--gold);border-radius:12px;
- display:grid;place-items:center;font-size:25px;
+
+header h1 {
+  color: #e7c46e;
+  font-size: 32px;
+  letter-spacing: 2px;
 }
-.brand h1{font-size:23px;margin:0;letter-spacing:1px}
-.brand p{margin:5px 0 0;color:#c6cede;font-size:12px}
-.header-bottom{
- display:flex;justify-content:space-between;
- align-items:center;gap:12px;flex-wrap:wrap;margin-top:25px;
+
+header p {
+  margin-top: 8px;
+  color: #e1e6ef;
+  font-size: 13px;
+  letter-spacing: 2px;
 }
-.header-bottom h2{margin:0;font-size:25px}
-.header-bottom p{color:#c6cede;margin:7px 0 0;font-size:13px}
-.status{color:var(--gold);font-size:12px;letter-spacing:1px}
-main{max-width:1250px;margin:25px auto;padding:0 18px}
-.stats{
- display:grid;grid-template-columns:repeat(3,1fr);gap:15px;
+
+.container {
+  max-width: 1100px;
+  margin: 25px auto;
+  padding: 0 15px;
 }
-.stat,.panel{
- background:white;border:1px solid var(--border);
- border-radius:13px;padding:20px;
- box-shadow:0 3px 12px #17274608;
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.06);
 }
-.stat small{color:var(--muted);font-size:11px;letter-spacing:1px}
-.stat strong{display:block;font-size:27px;margin-top:10px;color:var(--navy)}
-.section-title{
- display:flex;justify-content:space-between;
- align-items:center;gap:10px;margin-bottom:17px;flex-wrap:wrap;
+
+h2 {
+  color: #10294b;
+  margin-bottom: 15px;
+  font-size: 20px;
 }
-.section-title h3{margin:0;color:var(--navy);font-size:17px}
-.panel{margin-top:20px}
-button{
- border:0;border-radius:7px;padding:11px 15px;
- background:var(--navy);color:white;font-weight:bold;
- cursor:pointer;font-size:12px;
+
+h3 {
+  color: #10294b;
+  font-size: 16px;
 }
-button:hover{opacity:.88}
-button.gold{background:var(--gold);color:#17223a}
-button.light{background:#edf0f5;color:var(--navy)}
-button.danger{background:#fce9e9;color:#a33232}
-input,select{
- padding:11px;border:1px solid var(--border);
- border-radius:7px;background:white;color:#202b40;
- min-width:0;width:100%;font-size:13px;
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d8dee8;
+  border-radius: 8px;
+  margin: 7px 0;
+  font-size: 14px;
+  background: white;
 }
-input:focus,select:focus{outline:2px solid #d6b15d80}
-.team-grid{
- display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 4px 2px;
 }
-.team-item{
- display:flex;align-items:center;gap:9px;
- padding:12px;border:1px solid var(--border);
- border-radius:9px;background:#fafbfe;
+
+.gold {
+  background: #d6ad52;
+  color: #10213b;
 }
-.team-item input{flex:1}
-.team-color{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.table-wrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;min-width:520px}
-th{
- background:#f3f5f9;color:#64718a;
- text-align:left;font-size:10px;letter-spacing:1px;
- padding:13px;
+
+.navy {
+  background: #10294b;
+  color: white;
 }
-td{padding:14px 13px;border-bottom:1px solid var(--border);font-size:13px}
-.rank{font-weight:bold;color:#a27b27}
-.total{font-weight:bold;color:var(--navy);font-size:16px}
-.event-form{
- display:grid;grid-template-columns:2fr 1fr auto;gap:10px;
- margin-bottom:16px;
+
+.danger {
+  background: #f4dddd;
+  color: #a12b2b;
 }
-.event-card{
- border:1px solid var(--border);border-radius:10px;
- margin-top:13px;overflow:hidden;
+
+button:hover {
+  opacity: .88;
 }
-.event-head{
- padding:14px;background:#f7f8fb;
- display:flex;justify-content:space-between;
- align-items:center;gap:10px;
+
+.team-list, .event-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
 }
-.event-head strong{color:var(--navy);font-size:14px}
-.event-head small{color:var(--muted)}
-.event-body{padding:15px}
-.placement-grid{
- display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+
+.team-item, .event-item {
+  border: 1px solid #e3e7ee;
+  border-radius: 10px;
+  padding: 14px;
 }
-.placement{display:flex;flex-direction:column;gap:6px}
-.placement label{font-size:12px;font-weight:bold}
-.event-footer{
- display:flex;justify-content:space-between;
- align-items:center;gap:10px;margin-top:15px;flex-wrap:wrap;
+
+.event-item {
+  border-left: 4px solid #d6ad52;
 }
-.event-footer small{color:var(--muted)}
-.empty{text-align:center;color:var(--muted);padding:25px;font-size:13px}
-footer{
- text-align:center;padding:28px;color:#8490a2;font-size:11px;
+
+.event-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
 }
-@media(max-width:600px){
- header{padding:20px}
- .stats{grid-template-columns:repeat(3,1fr);gap:7px}
- .stat{padding:12px}
- .stat strong{font-size:21px}
- .stat small{font-size:9px}
- .team-grid,.placement-grid{grid-template-columns:1fr}
- .event-form{grid-template-columns:1fr}
- .header-bottom h2{font-size:21px}
+
+.event-heading h3 {
+  flex: 1;
+}
+
+.event-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.small-btn {
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 450px;
+}
+
+th, td {
+  padding: 13px 10px;
+  text-align: center;
+  border-bottom: 1px solid #e5e8ef;
+}
+
+th {
+  background: #10294b;
+  color: #e7c46e;
+}
+
+tr:nth-child(even) {
+  background: #f8f9fc;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.rank {
+  font-weight: bold;
+  color: #b58a30;
+}
+
+.score {
+  font-weight: bold;
+  color: #10294b;
+}
+
+.empty {
+  color: #7a8493;
+  padding: 15px 0;
+  text-align: center;
+}
+
+footer {
+  background: #071a35;
+  color: #d6ad52;
+  text-align: center;
+  padding: 20px;
+  margin-top: 35px;
+  font-size: 12px;
+}
+
+.label {
+  font-size: 12px;
+  color: #697589;
+  margin-top: 8px;
+  display: block;
+}
+
+@media(max-width:600px) {
+  header h1 {
+    font-size: 25px;
+  }
+
+  .card {
+    padding: 15px;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <header>
- <div class="brand">
-  <div class="logo">🏆</div>
-  <div>
-   <h1>INTRAMSCORE</h1>
-   <p>OFFICIAL INTRAMURALS SCORING SYSTEM</p>
-  </div>
- </div>
- <div class="header-bottom">
-  <div>
-   <h2>Team Scoreboard</h2>
-   <p>Track every event. Calculate every point. Celebrate every victory.</p>
-  </div>
-  <div class="status">● LIVE SCOREBOARD</div>
- </div>
+  <h1>INTRAMSCORE</h1>
+  <p>OFFICIAL SPORTS FESTIVAL SCOREBOARD</p>
 </header>
 
-<main>
- <div class="stats">
-  <div class="stat">
-   <small>TOTAL TEAMS</small>
-   <strong id="teamCount">4</strong>
-  </div>
-  <div class="stat">
-   <small>TOTAL EVENTS</small>
-   <strong id="eventCount">0</strong>
-  </div>
-  <div class="stat">
-   <small>TOP TEAM</small>
-   <strong id="leader" style="font-size:17px">—</strong>
-  </div>
- </div>
+<div class="container">
 
- <section class="panel">
-  <div class="section-title">
-   <h3>01 / TEAM MANAGEMENT</h3>
-   <button class="gold" onclick="addTeam()">+ Add Team</button>
-  </div>
-  <div class="team-grid" id="teams"></div>
- </section>
+  <section class="card">
+    <h2>🏆 Overall Leaderboard</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Team</th>
+            <th>Total Points</th>
+            <th>Events Won</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard"></tbody>
+      </table>
+    </div>
+  </section>
 
- <section class="panel">
-  <div class="section-title">
-   <h3>02 / OVERALL LEADERBOARD</h3>
-   <span style="font-size:11px;color:#8792a5">AUTOMATIC RANKING</span>
-  </div>
-  <div class="table-wrap">
-   <table>
-    <thead>
-     <tr>
-      <th>RANK</th><th>TEAM</th><th>EVENTS WON</th>
-      <th>TOTAL POINTS</th>
-     </tr>
-    </thead>
-    <tbody id="leaderboard"></tbody>
-   </table>
-  </div>
- </section>
+  <section class="card">
+    <h2>Team Management</h2>
+    <div>
+      <input id="teamName" placeholder="Enter new team name">
+      <button class="gold" onclick="addTeam()">+ Add Team</button>
+    </div>
+    <div class="team-list" id="teamList"></div>
+  </section>
 
- <section class="panel">
-  <div class="section-title">
-   <h3>03 / EVENT MANAGEMENT</h3>
-  </div>
-  <div class="event-form">
-   <input id="eventName" placeholder="Enter sport or event name">
-   <select id="eventCategory">
-    <option>Sports</option>
-    <option>Games</option>
-    <option>Special Events</option>
-    <option>Other</option>
-   </select>
-   <button class="gold" onclick="addEvent()">+ Add Event</button>
-  </div>
-  <div id="events">
-   <div class="empty">No events added yet. Add your first event above.</div>
-  </div>
- </section>
+  <section class="card">
+    <h2>Sports and Events</h2>
+    <input id="eventName" placeholder="Enter sport or event name">
+    <button class="gold" onclick="addEvent()">+ Add Event</button>
+    <div class="event-list" id="eventList"></div>
+  </section>
 
- <section class="panel">
-  <div class="section-title">
-   <h3>04 / POINTS SYSTEM</h3>
-  </div>
-  <div class="table-wrap">
-   <table>
-    <thead><tr><th>PLACEMENT</th><th>AWARDED POINTS</th></tr></thead>
-    <tbody>
-     <tr><td>🥇 1st Place</td><td><b>100 Points</b></td></tr>
-     <tr><td>🥈 2nd Place</td><td><b>75 Points</b></td></tr>
-     <tr><td>🥉 3rd Place</td><td><b>50 Points</b></td></tr>
-     <tr><td>4th Place</td><td><b>25 Points</b></td></tr>
-    </tbody>
-   </table>
-  </div>
- </section>
-</main>
+  <section class="card">
+    <h2>Scoring System</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Placement</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1st Place</td><td>100</td></tr>
+          <tr><td>2nd Place</td><td>75</td></tr>
+          <tr><td>3rd Place</td><td>50</td></tr>
+          <tr><td>4th Place</td><td>25</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
 
 <footer>
- INTRAMSCORE · OFFICIAL TEAM SCORING SYSTEM<br>
- Excellence • Sportsmanship • Unity
+  INTRAMSCORE © 2026 | SPORTS FESTIVAL MANAGEMENT
 </footer>
 
 <script>
-const colors=["#243d69","#a47d35","#637c9d","#92734c",
-"#526b62","#75658f","#9b625c","#5e7780"];
+const STORAGE_KEY = "intramsScoreData";
 
-let teams=[
- {id:1,name:"Team 1"},
- {id:2,name:"Team 2"},
- {id:3,name:"Team 3"},
- {id:4,name:"Team 4"}
+let teams = [
+  {id:1, name:"Team 1"},
+  {id:2, name:"Team 2"},
+  {id:3, name:"Team 3"},
+  {id:4, name:"Team 4"}
 ];
-let events=[];
-let nextTeam=5;
-let nextEvent=1;
 
-function save(){
- localStorage.setItem("intramsScoreData",JSON.stringify({
-  teams,events,nextTeam,nextEvent
- }));
+let events = [
+  {id:1, name:"Basketball Girls", places:{}},
+  {id:2, name:"Basketball Boys", places:{}},
+  {id:3, name:"Volleyball Boys", places:{}},
+  {id:4, name:"Volleyball Girls", places:{}}
+];
+
+let nextTeam = 5;
+let nextEvent = 5;
+
+const points = {
+  "1":100,
+  "2":75,
+  "3":50,
+  "4":25
+};
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    teams,
+    events,
+    nextTeam,
+    nextEvent
+  }));
 }
 
-function load(){
- try{
-  const data=JSON.parse(localStorage.getItem("intramsScoreData"));
-  if(data){
-   teams=data.teams||teams;
-   events=data.events||[];
-   nextTeam=data.nextTeam||5;
-   nextEvent=data.nextEvent||1;
+function load() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (saved) {
+      if (saved.teams) teams = saved.teams;
+      if (saved.events) events = saved.events;
+      nextTeam = saved.nextTeam || 5;
+      nextEvent = saved.nextEvent || 5;
+    }
+  } catch(error) {
+    console.log("Could not load saved data.");
   }
- }catch(e){}
 }
 
-function addTeam(){
- const name=prompt("Enter the new team name:");
- if(!name||!name.trim())return;
- if(teams.some(t=>t.name.toLowerCase()===name.trim().toLowerCase())){
-  alert("This team name already exists.");return;
- }
- teams.push({id:nextTeam++,name:name.trim()});
- save();render();
-}
+function addTeam() {
+  const input = document.getElementById("teamName");
+  const name = input.value.trim();
 
-function renameTeam(id,value){
- const team=teams.find(t=>t.id===id);
- if(!team)return;
- const name=value.trim();
- if(!name)return;
- if(teams.some(t=>t.id!==id&&t.name.toLowerCase()===name.toLowerCase())){
-  alert("This team name already exists.");render();return;
- }
- team.name=name;
- save();render();
-}
-
-function addEvent(){
- const input=document.getElementById("eventName");
- const name=input.value.trim();
- if(!name){alert("Please enter an event name.");return;}
- if(teams.length<1){alert("Add at least one team first.");return;}
- events.push({
-  id:nextEvent++,
-  name,
-  category:document.getElementById("eventCategory").value,
-  places:{}
- });
- input.value="";
- save();render();
-}
-
-function deleteEvent(id){
- if(!confirm("Delete this event and its scores?"))return;
- events=events.filter(e=>e.id!==id);
- save();render();
-}
-
-const points={1:100,2:75,3:50,4:25};
-
-function changePlace(eventId,teamId,value){
- const event=events.find(e=>e.id===eventId);
- if(!event)return;
- const place=value===""?null:Number(value);
-
- if(place!==null){
-  const alreadyUsed=Object.entries(event.places).some(
-   ([id,p])=>Number(id)!==teamId&&p===place
-  );
-  if(alreadyUsed){
-   alert("This placement is already assigned to another team.");
-   render();return;
+  if (!name) {
+    alert("Please enter a team name.");
+    return;
   }
- }
- if(place===null)delete event.places[teamId];
- else event.places[teamId]=place;
 
- save();render();
+  teams.push({id:nextTeam++, name});
+  input.value = "";
+  save();
+  render();
 }
 
-function totals(){
- const result=teams.map(t=>{
-  let total=0,wins=0;
-  events.forEach(e=>{
-   const p=e.places[t.id];
-   if(p){
-    total+=points[p]||0;
-    if(p===1)wins++;
-   }
+function editTeam(id) {
+  const team = teams.find(t => t.id === id);
+  if (!team) return;
+
+  const name = prompt("Enter the new team name:", team.name);
+
+  if (name && name.trim()) {
+    team.name = name.trim();
+    save();
+    render();
+  }
+}
+
+function deleteTeam(id) {
+  const team = teams.find(t => t.id === id);
+  if (!team) return;
+
+  if (!confirm("Delete " + team.name + "? Its recorded scores will also be removed.")) return;
+
+  teams = teams.filter(t => t.id !== id);
+
+  events.forEach(event => {
+    delete event.places[id];
   });
-  return {...t,total,wins};
- });
- return result.sort((a,b)=>b.total-a.total||b.wins-a.wins);
+
+  save();
+  render();
 }
 
-function renderTeams(){
- document.getElementById("teams").innerHTML=teams.map((t,i)=>`
-  <div class="team-item">
-   <span class="team-color" style="background:${colors[i%colors.length]}"></span>
-   <input aria-label="Team name" value="${escapeHTML(t.name)}"
-    onchange="renameTeam(${t.id},this.value)">
-  </div>
- `).join("");
+function addEvent() {
+  const input = document.getElementById("eventName");
+  const name = input.value.trim();
+
+  if (!name) {
+    alert("Please enter an event name.");
+    return;
+  }
+
+  events.push({
+    id:nextEvent++,
+    name,
+    places:{}
+  });
+
+  input.value = "";
+  save();
+  render();
 }
 
-function renderLeaderboard(){
- const sorted=totals();
- document.getElementById("leaderboard").innerHTML=sorted.length?
- sorted.map((t,i)=>`
-  <tr>
-   <td class="rank">${i+1===1?"🥇":i+1===2?"🥈":i+1===3?"🥉":i+1}</td>
-   <td><b>${escapeHTML(t.name)}</b></td>
-   <td>${t.wins}</td>
-   <td class="total">${t.total} pts</td>
-  </tr>
- `).join(""):`<tr><td colspan="4" class="empty">No teams yet.</td></tr>`;
+function editEvent(id) {
+  const event = events.find(e => e.id === id);
+  if (!event) return;
 
- document.getElementById("teamCount").textContent=teams.length;
- document.getElementById("eventCount").textContent=events.length;
- document.getElementById("leader").textContent=
-  sorted.length&&sorted[0].total>0?sorted[0].name:"—";
+  const name = prompt("Edit sport or event name:", event.name);
+
+  if (name && name.trim()) {
+    event.name = name.trim();
+    save();
+    render();
+  }
 }
 
-function renderEvents(){
- const container=document.getElementById("events");
- if(!events.length){
-  container.innerHTML='<div class="empty">No events added yet. Add your first event above.</div>';
-  return;
- }
+function deleteEvent(id) {
+  if (!confirm("Delete this event and its scores?")) return;
 
- container.innerHTML=events.map(e=>{
-  const sorted=teams.slice().sort((a,b)=>
-   (e.places[a.id]||99)-(e.places[b.id]||99)
+  events = events.filter(e => e.id !== id);
+  save();
+  render();
+}
+
+function updatePlace(eventId, teamId, placement) {
+  const event = events.find(e => e.id === eventId);
+  if (!event) return;
+
+  if (placement === "") {
+    delete event.places[teamId];
+  } else {
+    const alreadyUsed = Object.entries(event.places)
+      .some(([id, place]) =>
+        id !== String(teamId) && place === placement
+      );
+
+    if (alreadyUsed) {
+      alert("This placement is already assigned to another team.");
+      render();
+      return;
+    }
+
+    event.places[teamId] = placement;
+  }
+
+  save();
+  render();
+}
+
+function getScores() {
+  return teams.map(team => {
+    let total = 0;
+    let wins = 0;
+
+    events.forEach(event => {
+      const placement = event.places[team.id];
+
+      if (placement) {
+        total += points[placement] || 0;
+        if (placement === "1") wins++;
+      }
+    });
+
+    return {
+      ...team,
+      total,
+      wins
+    };
+  }).sort((a,b) =>
+    b.total - a.total || b.wins - a.wins
   );
-  return `
-   <div class="event-card">
-    <div class="event-head">
-     <div>
-      <strong>${escapeHTML(e.name)}</strong><br>
-      <small>${escapeHTML(e.category)}</small>
-     </div>
-     <button class="danger" onclick="deleteEvent(${e.id})">Delete</button>
-    </div>
-    <div class="event-body">
-     <div class="placement-grid">
-      ${teams.map(t=>`
-       <div class="placement">
-        <label>${escapeHTML(t.name)}</label>
-        <select aria-label="Placement for ${escapeHTML(t.name)}"
-         onchange="changePlace(${e.id},${t.id},this.value)">
-         <option value="">Not assigned</option>
-         ${[1,2,3,4].map(p=>`
-          <option value="${p}" ${e.places[t.id]===p?"selected":""}>
-           ${p}${p===1?"st":p===2?"nd":p===3?"rd":"th"} Place — ${points[p]} pts
-          </option>
-         `).join("")}
-        </select>
-       </div>
-      `).join("")}
-     </div>
-     <div class="event-footer">
-      <small>Results are automatically added to the leaderboard.</small>
-     </div>
-    </div>
-   </div>
-  `;
- }).join("");
 }
 
-function escapeHTML(value){
- return String(value).replace(/[&<>"']/g,c=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;",
-  '"':"&quot;","'":"&#39;"
- }[c]));
+function renderLeaderboard() {
+  const tbody = document.getElementById("leaderboard");
+  const scores = getScores();
+
+  if (!scores.length) {
+    tbody.innerHTML = '<tr><td colspan="4">No teams added yet.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = scores.map((team,index) => `
+    <tr>
+      <td class="rank">${index + 1}</td>
+      <td>${escapeHTML(team.name)}</td>
+      <td class="score">${team.total}</td>
+      <td>${team.wins}</td>
+    </tr>
+  `).join("");
 }
 
-function render(){
- renderTeams();
- renderLeaderboard();
- renderEvents();
+function renderTeams() {
+  const container = document.getElementById("teamList");
+
+  if (!teams.length) {
+    container.innerHTML = '<p class="empty">No teams added.</p>';
+    return;
+  }
+
+  container.innerHTML = teams.map(team => `
+    <div class="team-item">
+      <strong>${escapeHTML(team.name)}</strong>
+      <div>
+        <button class="gold small-btn" onclick="editTeam(${team.id})">Edit</button>
+        <button class="danger small-btn" onclick="deleteTeam(${team.id})">Delete</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function renderEvents() {
+  const container = document.getElementById("eventList");
+
+  if (!events.length) {
+    container.innerHTML = '<p class="empty">No sports or events added yet.</p>';
+    return;
+  }
+
+  container.innerHTML = events.map(event => `
+    <div class="event-item">
+      <div class="event-heading">
+        <h3>${escapeHTML(event.name)}</h3>
+        <div class="event-actions">
+          <button class="gold small-btn" onclick="editEvent(${event.id})">Edit</button>
+          <button class="danger small-btn" onclick="deleteEvent(${event.id})">Delete</button>
+        </div>
+      </div>
+
+      ${
+        teams.length
+        ? teams.map(team => `
+          <label class="label">${escapeHTML(team.name)}</label>
+          <select onchange="updatePlace(${event.id}, ${team.id}, this.value)">
+            <option value="" ${!event.places[team.id] ? "selected" : ""}>No placement</option>
+            <option value="1" ${event.places[team.id] === "1" ? "selected" : ""}>1st Place - 100 points</option>
+            <option value="2" ${event.places[team.id] === "2" ? "selected" : ""}>2nd Place - 75 points</option>
+            <option value="3" ${event.places[team.id] === "3" ? "selected" : ""}>3rd Place - 50 points</option>
+            <option value="4" ${event.places[team.id] === "4" ? "selected" : ""}>4th Place - 25 points</option>
+          </select>
+        `).join("")
+        : '<p class="empty">Add teams to enter scores.</p>'
+      }
+    </div>
+  `).join("");
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
+}
+
+function render() {
+  renderLeaderboard();
+  renderTeams();
+  renderEvents();
 }
 
 load();
 render();
 </script>
+
 </body>
 </html>
-
